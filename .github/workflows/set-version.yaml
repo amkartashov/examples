@@ -6,6 +6,10 @@ on:
       version:
         type: string
         required: true
+      retries:
+        type: number
+        required: true
+        default: 3
 
 permissions:
   contents: write
@@ -25,6 +29,20 @@ jobs:
           git config user.email ''
           echo "${{ inputs.version }}" > VERSION
           git add VERSION
-          git commit --amend --no-edit
+          git commit --allow-empty -m "set version ${{ inputs.version }}"
           git tag ${{ inputs.version }} -m "version ${{ inputs.version }}"
-          git push --force-with-lease --follow-tags
+          retries=${{ inputs.retries }}
+
+            git fetch
+            git rebase origin/${git branch --show-current}
+
+          until git push --follow-tags; do
+            retries=$((retries-1))
+            if (( $retries < 1 )); then
+              echo failed to push
+              exit 1
+            fi
+            git fetch
+            git rebase origin/${git branch --show-current}
+          }
+          done

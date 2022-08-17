@@ -44,5 +44,4 @@ jobs:
             fi
             git fetch
             git rebase origin/$(git branch --show-current)
-          }
           done

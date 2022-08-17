@@ -7,8 +7,11 @@ on:
         type: string
         required: true
 
+permissions:
+  contents: write
+
 jobs:
-  bump-version:
+  set-version:
 
     runs-on: ubuntu-latest
 

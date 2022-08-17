@@ -3,7 +3,7 @@ name: dump pr context
 on: pull_request
 
 jobs:
-  version:
+  dump-pr-context:
 
     runs-on: ubuntu-latest
 

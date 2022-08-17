@@ -1,0 +1,12 @@
+name: dump pr context
+
+on: pull_request
+
+jobs:
+  version:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1

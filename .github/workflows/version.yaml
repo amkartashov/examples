@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-
-    - name: git describe
-      run: git describe --tags
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: git describe
+        run: git describe --tags

@@ -33,9 +33,6 @@ jobs:
           git tag ${{ inputs.version }} -m "version ${{ inputs.version }}"
           retries=${{ inputs.retries }}
 
-            git fetch
-            git rebase origin/$(git branch --show-current)
-
           until git push --follow-tags; do
             retries=$((retries-1))
             if (( $retries < 1 )); then

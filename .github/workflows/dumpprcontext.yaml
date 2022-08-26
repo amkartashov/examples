@@ -2,7 +2,9 @@ name: dump pr context
 
 on:
   pull_request:
-    types: [auto_merge_enabled]
+    #types: [auto_merge_enabled]
+    branches:
+      - main
 
 jobs:
   dump-pr-context:
